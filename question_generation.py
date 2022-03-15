@@ -1,3 +1,4 @@
+import os
 from distutils.log import ERROR
 from tkinter import filedialog
 from transformers import AutoTokenizer, AutoModelWithLMHead
@@ -10,6 +11,9 @@ import nltk
 import tkinter as tk
 from nltk import Tree
 nlp = spacy.load("de_core_news_lg")
+
+inputPath = './data'
+outputPath = './output'
 
 #gen = DocumentGenerator()
 #template = {"text": "abc"}
@@ -32,7 +36,7 @@ model = AutoModelWithLMHead.from_pretrained("dbmdz/german-gpt2")
 
 
 def save(textsummary):
-    with open('questionsentencesnegations.csv', 'a') as f:
+    with open(os.path.join(outputPath, 'questionsentencesnegations.csv'), 'a') as f:
         writer = csv.writer(f, delimiter = ';', quotechar= '"', quoting=csv.QUOTE_MINIMAL)
         for i in textsummary:
             writer.writerow(i)
@@ -193,7 +197,7 @@ def get_file():
 def read_file():
     filename = get_file()
     if filename.endswith('.txt'):
-        textFileObj = open(filename, 'r', encoding="utf-8")
+        textFileObj = open(os.path.join(inputPath, filename), 'r', encoding="utf-8")
         content = textFileObj.read()
         return  content
 

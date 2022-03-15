@@ -20,8 +20,12 @@ from heapq import nlargest
 from nltk.corpus import stopwords
 import numpy as np
 from scipy.spatial.distance import cosine
+import os
 
 import question_generation as qg
+
+inputPath = './data'
+outputPath = './output'
 
 
 
@@ -29,19 +33,19 @@ def get_file():
     root = tk.Tk()
     root.withdraw()
     root.filename = filedialog.askopenfilename(
-        initialdir="/", title="Select file", filetypes=(("all files", "*.*"), ("all files", "*.*")))
+        initialdir="./", title="Select file", filetypes=(("all files", "*.*"), ("all files", "*.*")))
     return (root.filename)
 
 
 def read_file():
     filename = get_file()
     if filename.endswith(".tex"):
-        texFileObj = open(filename, 'r', encoding="utf-8")
+        texFileObj = open(os.path.join(inputPath, filename), 'r', encoding="utf-8")
         content = texFileObj.read()
         return  LatexNodes2Text().latex_to_text(content)
 
     elif filename.endswith('.pdf'):
-        with pdfplumber.open(filename) as pdf:
+        with pdfplumber.open(os.path.join(inputPath,filename)) as pdf:
             text = ""
             for i in pdf.pages:
                 text += " " + str(i.extract_text()) 
@@ -58,7 +62,7 @@ def read_file():
             return text
 
     elif filename.endswith('.txt'):
-        textFileObj = open(filename, 'r', encoding="utf-8")
+        textFileObj = open(os.path.join(inputPath, filename), 'r', encoding="utf-8")
         content = textFileObj.read()
         return  content 
 
@@ -135,7 +139,7 @@ def summarize_text(text): #(text, per):
 
 
 def save(textsummary):
-    with open('summarized.txt', 'w') as f:
+    with open(os.path.join(outputPath,'summarized.txt'), 'w') as f:
         f.write(textsummary)
         f.close() 
 
