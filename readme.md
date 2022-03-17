@@ -14,10 +14,11 @@ This project provides a Natural Language Pipeline for processing German Textbook
 
 ## Getting startet
 
-1. After installation you need to run the following command to start the program: `python3.9 main.py 'answer-options' 'similarity'`
+1. After installation you need to run the following command to start the program: `python3.9 main.py 'answer-options' 'similarity'`.
 For "answer-options" you should enter an integer value for the number of expected answer options per MTF question.
 For 'similarity' you should enter a float value between 0 and 1 for the percentage of similarity between the answer choices. This specifies the percentage of the sentence that remains unchanged.
 2. Select a text files as an input for the question generation.
+3. As output you get a text summary (.txt) of your selected source text and a csv file (delimiter " ; ") with different answer options.
 
 ## Installation
 
@@ -37,3 +38,17 @@ conda install -y -c conda-forge essential_generators
 
 # Roadmap
 
+
+# License
+
+Distributed under the MIT License. See [LICENSE.txt](https://gitlab.pi6.fernuni-hagen.de/la-diva/adaptive-assessment/generationofmultipletruefalsequestions/-/blob/master/LICENSE.txt) for more information.
+
+# Contact
+Regina Kasakowskij - e-mail
+Niels Seidel - e-mail
+
+Project Link: 
+
+# Acknowledgments
+
+This research was supported by the Research Cluster Digitalization, Diversity and Lifelong Learning – Consequences for Higher Education (D²L²) of the FernUniversität in Hagen, Germany.
