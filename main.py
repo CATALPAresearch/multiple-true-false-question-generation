@@ -1,3 +1,4 @@
+import argparse
 from collections import Counter
 from itertools import count
 import pdfplumber
@@ -166,6 +167,15 @@ def main():
 if __name__ == '__main__':
     #main()
     #print ("... ENDE SUMMARIZATION!")
-    qg.generate_question(main())
+
+    parser = argparse.ArgumentParser(description='')  #formatter_class=argparse.RawDescriptionHelpFormatter,
+    parser.add_argument('a',  type = int, help='Expected number of answer options', default=3) #'--answer-options',
+    parser.add_argument('sim',   type = float, help='Similarity of answer options', default=0.5)   #action = 'store',    '--answer-options-similarity',
+    args = parser.parse_args()
+    answer_options  =  args.a    #parser.parse_args('-a')
+    similarity = args.sim        #parser.parse_args('-sim')
+    print(answer_options, similarity)
+
+    qg.generate_question(main(), answer_options, similarity)
     print ("FINISHED ! ")
 
