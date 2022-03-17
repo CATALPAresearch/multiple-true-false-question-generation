@@ -36,13 +36,13 @@ model = AutoModelWithLMHead.from_pretrained("dbmdz/german-gpt2")
 
 
 def save(textsummary):
-    with open(os.path.join(outputPath, 'questionsentencesnegations.csv'), 'a') as f:
+    with open(os.path.join(outputPath, 'output_generated_sentences.csv'), 'a') as f:
         writer = csv.writer(f, delimiter = ';', quotechar= '"', quoting=csv.QUOTE_MINIMAL)
         for i in textsummary:
             writer.writerow(i)
         #writer.close() 
 
-def generate_question(text):
+def generate_question(text, answer_options, similarity):
     pipe = pipeline('text-generation', model="dbmdz/german-gpt2",
                  tokenizer="dbmdz/german-gpt2")
 
@@ -51,8 +51,8 @@ def generate_question(text):
     doc= nlp(text)
     
     textsummary  = []
-    b = int(input("Anzahl der Falschaussagen z.B. 3: "))
-    z = float(input("wähle einen Anteil des Satzes, der erhalten bleiben soll, 0.1 - 0.99: "))
+    b = answer_options   #int(input("Anzahl der Falschaussagen z.B. 3: "))
+    z = similarity       #float(input("wähle einen Anteil des Satzes, der erhalten bleiben soll, 0.1 - 0.99: "))
     for sentence in doc.sents:
         words = len(sentence)* z 
         print (words) 
