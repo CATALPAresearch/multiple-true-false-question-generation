@@ -3,7 +3,7 @@ import os
 import argparse
 
 import text_summarization as ts
-# import question_generation as qg
+import question_generation as qg
 import utils as u
 
 
@@ -62,6 +62,6 @@ if __name__ == '__main__':
     print(".. END SUMMARIZER")
     print()
     print("START QUESTION GENERATION")
-    #result = qg.generate_question(summerized_text, answer_options, similarity, filename)
-    #utils.save_csv(summerized_text, filename, prefix='_generated.csv')
+    result = qg.generate_question(summerized_text, answer_options, similarity, filename)
+    utils.save_csv(summerized_text, filename, prefix='_generated.csv')
     print("end QUESTION GENERATION")
