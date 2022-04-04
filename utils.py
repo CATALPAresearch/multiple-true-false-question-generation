@@ -110,17 +110,19 @@ class Utils:
         
         # add header row
         header = [
-            'Kontext',
-            'Syntax_wAussage',
-            'Kontext_fAussage',
-            'Syntax_fAussage',
-            'fAussage_Einordnung',
-            'fAussage_Plausibilität',
-            'fAussage_Logik',
-            'fAussage_Falschheit',
-            'fAussage_Schwierigkeit',
+            'Wahre Aussage',
+            'Kontext (0/1)',
+            'Syntax  (0/1)',
+            'Falsche Aussage',
+            'Kontext  (0/1)',
+            'Syntax (0/1)',
+            'Fachliche Einordnung (0/1)',
+            'Plausibilität (0/1)',
+            'Logik (0/1)',
+            'Falschheit (0/1)',
+            'Schwierigkeit (1-10)',
         ]
-        col = 2
+        col = 0
         for element in header:
             worksheet.write(row, col, element)
             col += 1
@@ -128,8 +130,7 @@ class Utils:
         # fill data
         row = 1
         col = 0
-        worksheet.set_column(0, 1, 40)
-        
+        #worksheet.set_row(0, 1, 40)
         link_format = workbook.add_format({
             #'color': 'blue',
             'text_wrap': True,
@@ -138,8 +139,8 @@ class Utils:
             })
         for item in textsummary:
             worksheet.write(row, 0, item[0], link_format)
-            worksheet.write(row, 1, item[1], link_format)
-            worksheet.set_row(row, 1, 25)
+            worksheet.write(row, 3, item[1], link_format)
+            # worksheet.set_row(row, 1, 25)
             row += 1
         
         workbook.close()
