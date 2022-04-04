@@ -1,18 +1,18 @@
-import os
-from distutils.log import ERROR
-from tkinter import filedialog
+#import os
+#from distutils.log import ERROR
+#from tkinter import filedialog
 from transformers import AutoTokenizer, AutoModelWithLMHead
-import csv
+
 from transformers import pipeline
-from essential_generators import DocumentGenerator
+#from essential_generators import DocumentGenerator
 import random
 import spacy 
 import nltk
-import tkinter as tk
-from nltk import Tree
+#import tkinter as tk
+#from nltk import Tree
 nlp = spacy.load("de_core_news_lg")
 
-inputPath = './data'
+inputPath = './'
 outputPath = './output'
 
 #gen = DocumentGenerator()
@@ -35,14 +35,7 @@ tokenizer = AutoTokenizer.from_pretrained("dbmdz/german-gpt2")
 model = AutoModelWithLMHead.from_pretrained("dbmdz/german-gpt2")
 
 
-def save(textsummary):
-    with open(os.path.join(outputPath, 'output_generated_sentences.csv'), 'a') as f:
-        writer = csv.writer(f, delimiter = ';', quotechar= '"', quoting=csv.QUOTE_MINIMAL)
-        for i in textsummary:
-            writer.writerow(i)
-        #writer.close() 
-
-def generate_question(text, answer_options, similarity):
+def generate_question(text, answer_options, similarity, filename=False):
     pipe = pipeline('text-generation', model="dbmdz/german-gpt2",
                  tokenizer="dbmdz/german-gpt2")
 
@@ -101,7 +94,7 @@ def generate_question(text, answer_options, similarity):
                 #    break
                 
             
-    save(textsummary)
+    return textsummary
     #print(str(textsent))
     #for sentence in text:
      #   return sentence
@@ -187,21 +180,8 @@ def add_negation(sentence):
     
     #return changedSentence
 
-def get_file():
-    root = tk.Tk()
-    root.withdraw()
-    root.filename = filedialog.askopenfilename(
-        initialdir="/", title="Select file", filetypes=(("all files", "*.*"), ("all files", "*.*")))
-    return (root.filename)
-
-def read_file():
-    filename = get_file()
-    if filename.endswith('.txt'):
-        textFileObj = open(os.path.join(inputPath, filename), 'r', encoding="utf-8")
-        content = textFileObj.read()
-        return  content
 
 
-#generate_question(read_file())
+
 #print(delete_negation("Die Sonne kreist nicht um die Erde"))
 #add_negation('Die Erde dreht sich um die Sonne')
