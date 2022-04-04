@@ -97,6 +97,8 @@ def generate_question(text, answer_options, similarity, filename=False):
                 #    break
                 
     print(textsummary)
+    
+    print(len(textsummary))
     return textsummary
     #print(str(textsent))
     #for sentence in text:

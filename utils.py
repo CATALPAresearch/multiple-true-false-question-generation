@@ -84,7 +84,7 @@ class Utils:
                 '.txt', prefix
             ).replace(
                 '.pdf', prefix)
-        with open(os.path.join(self.outputPath, outfilename), 'a') as f:
+        with open(os.path.join(self.outputPath, outfilename), 'w') as f:
             writer = csv.writer(f, 
                                 delimiter=';', 
                                 quotechar='"',

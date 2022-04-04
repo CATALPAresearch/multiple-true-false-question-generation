@@ -66,7 +66,7 @@ if __name__ == '__main__':
     # Step 2: Generate MTF questions
     print("START QUESTION GENERATION")
     result = qg.generate_question(summerized_text, answer_options, similarity, filename)
-    utils.save_csv(summerized_text, filename, prefix='_generated.csv')
+    utils.save_csv(result, filename, prefix='_generated.csv')
     print("end QUESTION GENERATION")
     
     # Step 3: Prepare output for evaluation
