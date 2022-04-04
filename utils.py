@@ -129,13 +129,17 @@ class Utils:
         row = 1
         col = 0
         worksheet.set_column(0, 1, 40)
+        
         link_format = workbook.add_format({
-            'color': 'blue',
-            'text_wrap': True
+            #'color': 'blue',
+            'text_wrap': True,
+            'align':'left',
+            'valign':'top'
             })
         for item in textsummary:
-            worksheet.write(row, 0, item[0], link_forma)
-            worksheet.write(row, 1, item[1], link_forma)
+            worksheet.write(row, 0, item[0], link_format)
+            worksheet.write(row, 1, item[1], link_format)
+            worksheet.set_row(row, 1, 25)
             row += 1
         
         workbook.close()
