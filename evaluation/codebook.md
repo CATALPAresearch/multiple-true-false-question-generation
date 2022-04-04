@@ -11,7 +11,7 @@
 | Plausibilität | Falsche Aussage ist plausibel                     | 0 = nein ; 1 = ja
 | Logik	        | Falsche Aussage ist logisch (kein Zirkelschluss)  | 0 = nein ; 1 = ja
 | Falschheit    | Falsche Aussage entspricht keiner wahren Aussage (Falsch) | 0 = nein ; 1 = ja
-| Schwierigkeit | Schwierigkeitsgrad                                | zwischen 1 (sehr leicht) und 10 (sehr schwr)
+| Schwierigkeit | Schwierigkeitsgrad                                | zw. 1 (sehr leicht) und 10 (sehr schwer)
 |...|...|...|
 
 
