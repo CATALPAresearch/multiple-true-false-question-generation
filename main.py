@@ -53,7 +53,8 @@ if __name__ == '__main__':
     inputPath = './'
     outputPath = './output'
     utils = u.Utils(inputPath, outputPath)
-    #
+    
+    # Step 1: Summarize text
     print("START SUMMARIZER")
     text = utils.read_file(filename=filename)
     summarizer = ts.TextSummarizer()
@@ -61,7 +62,11 @@ if __name__ == '__main__':
     utils.save_txt(summerized_text, filename, prefix='_summarized.txt')
     print(".. END SUMMARIZER")
     print()
+    
+    # Step 2: Generate MTF questions
     print("START QUESTION GENERATION")
     result = qg.generate_question(summerized_text, answer_options, similarity, filename)
     utils.save_csv(summerized_text, filename, prefix='_generated.csv')
     print("end QUESTION GENERATION")
+    
+    # Step 3: Prepare output for evaluation

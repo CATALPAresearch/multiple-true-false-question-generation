@@ -36,8 +36,11 @@ model = AutoModelWithLMHead.from_pretrained("dbmdz/german-gpt2")
 
 
 def generate_question(text, answer_options, similarity, filename=False):
-    pipe = pipeline('text-generation', model="dbmdz/german-gpt2",
-                 tokenizer="dbmdz/german-gpt2")
+    pipe = pipeline(
+        'text-generation', 
+        model="dbmdz/german-gpt2",
+        tokenizer="dbmdz/german-gpt2"
+        )
 
     text = text.replace(';',':')
     text = text.replace('•', '')
@@ -93,7 +96,7 @@ def generate_question(text, answer_options, similarity, filename=False):
                 #    i= i+1
                 #    break
                 
-            
+    print(textsummary)
     return textsummary
     #print(str(textsent))
     #for sentence in text:
