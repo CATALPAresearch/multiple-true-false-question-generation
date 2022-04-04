@@ -36,6 +36,7 @@ conda install -y -c conda-forge pylatexenc
 conda install -y -c conda-forge packaging
 conda install -y -c conda-forge transformers
 conda install -y -c conda-forge essential_generators
+conda install -y -c conda-forge xlsxwriter
 ```
 3. Download spacy: `python3.9 -m spacy download de_core_news_lg`
 

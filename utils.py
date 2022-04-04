@@ -4,7 +4,7 @@ import tkinter as tk
 import pdfplumber
 from pylatexenc.latex2text import LatexNodes2Text
 import csv
-#import PyPDF2
+import xlsxwriter
 class Utils:
     
     def __init__(self, inputPath, outputPath):
@@ -86,11 +86,59 @@ class Utils:
                 '.pdf', prefix)
         with open(os.path.join(self.outputPath, outfilename), 'w') as f:
             writer = csv.writer(f, 
-                                delimiter=';', 
+                                delimiter=';',
                                 quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
             for i in textsummary:
                 writer.writerow(i)
+    
+    """
+    Saves data to csv file
+    """
+
+    def save_xlsx(self, textsummary, filename=False, prefix=''):
+        outfilename = 'generated_sentences.xlsx'
+        if filename != False:
+            outfilename = os.path.basename(filename).replace(
+                '.txt', prefix
+            ).replace(
+                '.pdf', prefix)
+        workbook = xlsxwriter.Workbook(os.path.join(self.outputPath, outfilename))
+        worksheet = workbook.add_worksheet()
+        row = 0
+        col = 0
+        
+        # add header row
+        header = [
+            'Kontext',
+            'Syntax_wAussage',
+            'Kontext_fAussage',
+            'Syntax_fAussage',
+            'fAussage_Einordnung',
+            'fAussage_Plausibilität',
+            'fAussage_Logik',
+            'fAussage_Falschheit',
+            'fAussage_Schwierigkeit',
+        ]
+        col = 2
+        for element in header:
+            worksheet.write(row, col, element)
+            col += 1
+            
+        # fill data
+        row = 1
+        col = 0
+        worksheet.set_column(0, 1, 40)
+        link_format = workbook.add_format({
+            'color': 'blue',
+            'text_wrap': True
+            })
+        for item in textsummary:
+            worksheet.write(row, 0, item[0], link_forma)
+            worksheet.write(row, 1, item[1], link_forma)
+            row += 1
+        
+        workbook.close()
             
             
             
