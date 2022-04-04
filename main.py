@@ -2,9 +2,9 @@
 import os
 import argparse
 
+import utils as u
 import text_summarization as ts
 import question_generation as qg
-import utils as u
 
 
 if __name__ == '__main__':

@@ -1,21 +1,17 @@
-#from ast import Str
 import spacy
-#from scipy.spatial.distance import cosine
-#import numpy as np
 from heapq import nlargest
 from string import punctuation
 from spacy.lang.de.stop_words import STOP_WORDS
-
-
-#from nltk.tokenize import sent_tokenize, word_tokenize
 from collections import Counter
-#from itertools import count
-
-
 from nltk.corpus import stopwords
-#from numpy.lib.function_base import average
 stoplist = set(stopwords.words("german"))
 
+#from ast import Str
+#from scipy.spatial.distance import cosine
+#import numpy as np
+#from nltk.tokenize import sent_tokenize, word_tokenize
+#from itertools import count
+#from numpy.lib.function_base import average
 
 class TextSummarizer:
     
@@ -26,7 +22,7 @@ class TextSummarizer:
     Summarize a given text and return the summary
     """
     def summarize_text(self, text):  # (text, per):
-        summary = print("Start summarization")
+        summary = ''
 
         text = text.replace('- ', '')
         text = text.replace('-\n', '')

@@ -2,16 +2,18 @@ import os
 from tkinter import filedialog
 import tkinter as tk
 import pdfplumber
-#import PyPDF2
 from pylatexenc.latex2text import LatexNodes2Text
 import csv
-
+#import PyPDF2
 class Utils:
     
     def __init__(self, inputPath, outputPath):
         self.inputPath = inputPath
         self.outputPath = outputPath
         
+    """
+    Provides dialog to open a file from lokal file system
+    """
     def get_file(self):
         root = tk.Tk()
         root.withdraw()
@@ -19,6 +21,9 @@ class Utils:
             initialdir="./", title="Select file", filetypes=(("all files", "*.*"), ("all files", "*.*")))
         return (root.filename)
 
+    """
+    Reads data from a give file path
+    """
     def read_file(self, filename=False):
         if filename == False:
             filename = self.get_file()
@@ -54,7 +59,9 @@ class Utils:
         else:
             print('Dieser Datentyp wird leider nicht unterstützt')
 
-
+    """
+    Saves data to text file
+    """
     def save_txt(self, textsummary, filename=False, prefix=''):
         outfilename = 'summarized.txt'
         if filename != False:
@@ -67,6 +74,9 @@ class Utils:
             f.write(textsummary)
             f.close()
             
+    """
+    Saves data to csv file
+    """
     def save_csv(self, textsummary, filename=False, prefix=''):
         outfilename = 'generated_sentences.csv'
         if filename != False:
@@ -74,14 +84,14 @@ class Utils:
                 '.txt', prefix
             ).replace(
                 '.pdf', prefix)
-        with open(os.path.join(self.outputPath, outfilename), 'w') as f:
+        with open(os.path.join(self.outputPath, outfilename), 'a') as f:
             writer = csv.writer(f, 
                                 delimiter=';', 
                                 quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
             for i in textsummary:
                 writer.writerow(i)
-            writer.close()
+            
             
             
   
