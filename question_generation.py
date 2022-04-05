@@ -42,8 +42,10 @@ def generate_question(text, answer_options, similarity, filename=False):
         tokenizer="dbmdz/german-gpt2"
         )
 
-    text = text.replace(';',':')
+    text = text.replace(';','.')
     text = text.replace('•', '')
+    text = text.replace('z. B.', 'zum Beispiel')
+    #text = text.replace('\n', ' ')
     doc= nlp(text)
     
     textsummary  = []
@@ -63,8 +65,13 @@ def generate_question(text, answer_options, similarity, filename=False):
             if(words > 3):
                # try:
                    # textsent = pipe(str(sentenceshort), max_length=len(sentence)*2)[0]["generated_text"]
-                    textsent = pipe(str(sentenceshort), max_length= 75) [0]["generated_text"]
+                    output_max_len = 75
+                    if(words/z > 37):
+                        output_max_len = (words/z)*2
 
+                    textsent = pipe(str(sentenceshort), max_length= output_max_len) [0]["generated_text"]
+                    
+                    textsent = textsent.replace('\n', ' ')
                     textsent = textsent.replace('z.B.', 'zum Beispiel')
                     textsent = textsent.replace('ca.', 'circa')
                     textsent = textsent.replace('d.h.', 'das heißt')
@@ -81,12 +88,27 @@ def generate_question(text, answer_options, similarity, filename=False):
                     textsent = textsent.replace('Abb.', 'Abbildung')
                     textsent = textsent.replace('etc.', 'et cetera')
                     textsent = textsent.replace('S.', 'Seite')
+                    textsent = textsent.replace('s.', 'Seite')
+                    textsent = textsent.replace('ff.', 'folgende')
+                    textsent = textsent.replace('f.', 'folgend')
 
-                    textsent =  textsent + " ---- ende ---"
-                    textsentlist= textsent.split('.')  
-                    textsent = textsent.replace(textsentlist[len(textsentlist)-1], '')
+                    #altsatz = textsent
+                    #textsent =  textsent + " ---- ende ---"
+                    #textsentlist= textsent.split('.')
+                    text_token = nlp(textsent) 
+                    doc_sents = [sent.text for sent in text_token.sents] 
+                    textsent = doc_sents[0]
+                    if(len(doc_sents[0].replace(" ","")) == 0 ):
+                        textsent = doc_sents[1]
+                    #textsent = ''.join(textsent.text)
+                    #textsent = textsent.replace(textsentlist[len(textsentlist)-1], '')
+                    #textsent = textsent+"."
                     textsent = textsent.replace('\n', ' ')
+                    textsent = textsent.replace(';', '.')
+                    #textsent = textsent + "\n\n" + altsatz
                     sentence2 = str(sentence).replace('\n', ' ')
+                    sentence2 = sentence2[:1].upper() + sentence2[1:]
+                    textsent = str(textsent)[:1].upper() + str(textsent)[1:]
                     textsummary.append([sentence2, str(textsent)])
                     #save (sentence, str(textsent))
                     i = i+1
