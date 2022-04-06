@@ -67,7 +67,8 @@ res %>%
   right_join(res_ped, by=c('variable')) %>%
   rename(Pedagogy = n) %>%
   arrange(rowOrder) %>% 
-  select(-rowOrder)
+  select(-rowOrder) %>%
+  mutate(Total = (Agriculture + Computer_Scienc + Economics + Pedagogy) / 4)
 
 ```
 
