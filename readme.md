@@ -2,9 +2,9 @@ This project provides a Natural Language Pipeline for processing German Textbook
 
 **Todo**
 
-- [ ] write readme.md
-- [ ] text pipeline with one text
-- [ ] collect all input texts
+- [x] write readme.md
+- [x] text pipeline with one text
+- [x] collect all input texts
 - [ ] run pipe line with all texts
 - [ ] render output measures for publication
 

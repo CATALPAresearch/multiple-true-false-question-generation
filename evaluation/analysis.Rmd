@@ -7,41 +7,50 @@ output: html_notebook
 
 ```{r}
 library("readxl")
-library(dplyr)
 library(tidyr)
+library(dplyr)
 
 ```
 
 
 ```{r, loadData}
-df_agrar <- read_excel("test1.xlsx")
+column_names <- c(
+  "trueStatement",
+  "contextT",
+  "syntaxT",
+  "falseStatement",
+  "contextF",
+  "sytaxF",        
+  "specifityF",
+  "plausebilityF",
+  "logicF",
+  "falsabilityF",
+  "difficultyF"
+)
+
+
+df_agrar <- read_excel("Agriculture_Seidel.xlsx")
 df_ped <- read_excel("test1.xlsx")
 df_info <- read_excel("test1.xlsx")
 df_cs <- read_excel("test1.xlsx")
 
-
-
+colnames(df_agrar) <- column_names
+colnames(df_ped) <- column_names
+colnames(df_info) <- column_names
+colnames(df_cs) <- column_names
+ 
+df_agrar 
 ```
 ```{r, aggregateData}
 
 aggregateData <- function(data){
+  data <- df_agrar
+  names(data)
   data %>% 
-    select(-`Wahre Aussage`, -`Falsche Aussage`, -`...12`) %>%
-    rename(
-      conttextT = `Kontext (0/1)`,
-      syntaxT = `Syntax  (0/1)`,
-      contextF = `Kontext  (0/1)`,
-      sytaxF = `Syntax (0/1)`,        
-      specifityF = `Fachliche Einordnung (0/1)`,
-      plausebilityF = `Plausibilität (0/1)`,
-      logicF = `Logik (0/1)`,
-      falsabilityF = `Falschheit (0/1)`,
-      difficultyF = `Schwierigkeit (1-10)`
-      ) %>%
-    replace(is.na(.), 0) %>%
+    replace(is.na(.), 0) %>% select(contextT,syntaxT,contextF,sytaxF,specifityF,plausebilityF,logicF,falsabilityF,difficultyF) %>%
     mutate(difficultyF = difficultyF / 10) %>%
     tidyr::pivot_longer(cols=ends_with("F"), names_to = "variable", values_to = "count") %>%
-    select(variable, count) %>%
+    dplyr::select(variable, count) %>%
     group_by(variable) %>%
     summarise(n=sum(count)/(nrow(data)-1)) %>%
     mutate(n=round(n,2))
@@ -54,7 +63,7 @@ res_cs <- aggregateData(df_cs)
   
 ```
 
-```{r combinedresults}
+```{r, combinedresults}
 
 res <- cbind(res_agrar, rowOrder=c(1, 7, 6, 5, 4, 3, 2))
 #res <- res_agrar
@@ -68,7 +77,7 @@ res %>%
   rename(Pedagogy = n) %>%
   arrange(rowOrder) %>% 
   select(-rowOrder) %>%
-  mutate(Total = (Agriculture + Computer_Scienc + Economics + Pedagogy) / 4)
+  mutate(Total = (Agriculture + Computer_Science + Economics + Pedagogy) / 4)
 
 ```
 
