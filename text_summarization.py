@@ -25,7 +25,12 @@ class TextSummarizer:
         summary = ''
 
         text = text.replace('- ', '')
-        text = text.replace('-\n', '')
+        text = text.replace(';', ',')
+        text = text.replace('-\n', '')             
+        text = text.replace('z.B.', 'zum Beispiel')
+        text = text.replace('ca.', 'circa')
+        text = text.replace('d.h.', 'das heißt')
+        text = text.replace('u.v.a.', 'und vor allem')
 
         nlp = spacy.load("de_core_news_lg")
         doc = nlp(text)
@@ -34,7 +39,7 @@ class TextSummarizer:
         keyword = []
         stopwords = list(STOP_WORDS)
         # stopwords.extend([])
-        pos_tag = ['PROPN', 'ADJ', 'NOUN', 'VERB']
+        pos_tag = [ 'ADJ', 'NOUN', 'VERB'] #'PROPN',
         for token in doc:
             if(token.text in stopwords or token.text in punctuation):
                 continue
@@ -56,7 +61,7 @@ class TextSummarizer:
                         sent_strength[sent] = freq_word[word.text]
         #TODO exclude sentences referring to a context (e.g. "Dieser", "Somit", ...)
         summary_sentences = nlargest(round(len(
-            [[token.text for token in sent] for sent in doc.sents]) * 0.2), sent_strength, key=sent_strength.get)
+            [[token.text for token in sent] for sent in doc.sents]) * 0.1), sent_strength, key=sent_strength.get)
         fin_summary = [w.text for w in summary_sentences]
         summary = ' '.join(fin_summary)
 
