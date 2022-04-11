@@ -25,7 +25,8 @@ class TextSummarizer:
         summary = ''
 
         text = text.replace('- ', '')
-        text = text.replace(';', ',')
+        text = text.replace('ff.', 'folgende')
+        text = text.replace('f.', 'folgend')
         text = text.replace('-\n', '')             
         text = text.replace('z.B.', 'zum Beispiel')
         text = text.replace('ca.', 'circa')
@@ -37,11 +38,12 @@ class TextSummarizer:
     # tokens=[token.text for token in doc]
     # len(list(doc.sents))
         keyword = []
+        delete_kontext = ['also','Abbildung', '§','§§','Abb.', 'Abschnitt', 'Abschnitte', 'So', 'Somit', 'zum Beispiel', 'dann', 'nun', 'Beispiel', 'Daraus', 'Hierbei', 'zuvor','Dieser', 'Dieses', 'Diesem', 'fassen', 'zusammen', 'zusammenfassend', 'Dort']
         stopwords = list(STOP_WORDS)
         # stopwords.extend([])
         pos_tag = [ 'ADJ', 'NOUN', 'VERB'] #'PROPN',
         for token in doc:
-            if(token.text in stopwords or token.text in punctuation):
+            if(token.text in stopwords or token.text in punctuation or token.text in delete_kontext):
                 continue
             if (token.pos_ in pos_tag):
                 keyword.append(token.text)
