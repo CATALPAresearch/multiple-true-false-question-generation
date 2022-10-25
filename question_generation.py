@@ -1,26 +1,13 @@
-#import os
-#from distutils.log import ERROR
-#from tkinter import filedialog
-from transformers import AutoTokenizer, AutoModelWithLMHead
 
+from transformers import AutoTokenizer, AutoModelWithLMHead
 from transformers import pipeline
-#from essential_generators import DocumentGenerator
 import random
 import spacy 
 import nltk
-#import tkinter as tk
-#from nltk import Tree
 nlp = spacy.load("de_core_news_lg")
 
 inputPath = './'
 outputPath = './output'
-
-#gen = DocumentGenerator()
-#template = {"text": "abc"}
-#gen.set_template(template)
-#part one generating random Sentences 
-#print(gen.sentence())
-#print(gen.documents(10))
 
 np_list = []
 vp_list = []
@@ -45,7 +32,6 @@ def generate_question(text, answer_options, similarity, filename=False):
     text = text.replace(';','.')
     text = text.replace('•', '')
     text = text.replace('z. B.', 'zum Beispiel')
-    #text = text.replace('\n', ' ')
     doc= nlp(text)
     
     textsummary  = []
@@ -54,17 +40,10 @@ def generate_question(text, answer_options, similarity, filename=False):
     for sentence in doc.sents:
         words = len(sentence)* z 
         print (words) 
-        #words = words * 2 / 3
         sentenceshort = sentence[0:words]
-        #print (sentence)
-        
-        #textsent = pipe(str(sentence), max_length=100)[0]["generated_text"]
-       
         i=0
         for  i in range(b):
             if(words > 3):
-               # try:
-                   # textsent = pipe(str(sentenceshort), max_length=len(sentence)*2)[0]["generated_text"]
                     output_max_len = 75
                     if(words/z > 37):
                         output_max_len = (words/z)*2
@@ -72,6 +51,7 @@ def generate_question(text, answer_options, similarity, filename=False):
                     textsent = pipe(str(sentenceshort), max_length= output_max_len) [0]["generated_text"]
                     
                     textsent = textsent.replace('\n', ' ')
+                    textsent = textsent.replace(r'\s+',' ')
                     textsent = textsent.replace('z.B.', 'zum Beispiel')
                     textsent = textsent.replace('ca.', 'circa')
                     textsent = textsent.replace('d.h.', 'das heißt')
@@ -88,45 +68,28 @@ def generate_question(text, answer_options, similarity, filename=False):
                     textsent = textsent.replace('Abb.', 'Abbildung')
                     textsent = textsent.replace('etc.', 'et cetera')
                     textsent = textsent.replace('S.', 'Seite')
-                    textsent = textsent.replace('s.', 'Seite')
                     textsent = textsent.replace('ff.', 'folgende')
                     textsent = textsent.replace('f.', 'folgend')
 
-                    #altsatz = textsent
-                    #textsent =  textsent + " ---- ende ---"
-                    #textsentlist= textsent.split('.')
                     text_token = nlp(textsent) 
                     doc_sents = [sent.text for sent in text_token.sents] 
                     textsent = doc_sents[0]
                     if(len(doc_sents[0].replace(" ","")) == 0 ):
                         textsent = doc_sents[1]
-                    #textsent = ''.join(textsent.text)
-                    #textsent = textsent.replace(textsentlist[len(textsentlist)-1], '')
-                    #textsent = textsent+"."
                     textsent = textsent.replace('\n', ' ')
                     textsent = textsent.replace(';', '.')
-                    #textsent = textsent + "\n\n" + altsatz
+                    
                     sentence2 = str(sentence).replace('\n', ' ')
                     sentence2 = sentence2[:1].upper() + sentence2[1:]
                     textsent = str(textsent)[:1].upper() + str(textsent)[1:]
                     textsummary.append([sentence2, str(textsent)])
-                    #save (sentence, str(textsent))
                     i = i+1
-                #except:
-                #    print (ERROR)
-                #    print (i)
-                #    i= i+1
-                #    break
-                
     print(textsummary)
     
     print(len(textsummary))
     return textsummary
-    #print(str(textsent))
-    #for sentence in text:
-     #   return sentence
 
-
+# Additional possibilities to generate false sentences 
 def new_sentence(sentence):
     sentence = nlp(sentence)
     cp = nltk.RegexpParser(grammar)
@@ -166,14 +129,10 @@ def add_negation(sentence):
         if any(word in sent.text_with_ws for word in negations):
             print (sent)
             continue
-            #return sent
         else:
-            #sentence = nlp(sentence)
             i=0
-            for word in sent: #sentence:
-                #print (word)
+            for word in sent: 
                 if word.tag_ in ['VB', 'VVFIN']:
-                    #print (word.tag_)
                     if i < 1:
                         changedword = word.text_with_ws
                         changedSentence.append(changedword) 
@@ -190,7 +149,7 @@ def add_negation(sentence):
                             changedSentence.append(changedword) 
                     
                 else:
-                    if word.text == "sich":   ##### Das gleiche mit man , es 
+                    if word.text == "sich":   #####TODO: Das gleiche mit man , es etc.
                             changedSentence.pop()
                             changedword = word.text_with_ws
                             changedSentence.append(changedword) 
@@ -200,15 +159,6 @@ def add_negation(sentence):
                             changedSentence.append(changedword) 
         text = ''.join([i for i in changedSentence])
         textsummary.append([sent.text_with_ws, text])
-        #save(textsummary)
         print(changedSentence)
         textsummary = []
         changedSentence = []
-    
-    #return changedSentence
-
-
-
-
-#print(delete_negation("Die Sonne kreist nicht um die Erde"))
-#add_negation('Die Erde dreht sich um die Sonne')

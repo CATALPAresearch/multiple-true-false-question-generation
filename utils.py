@@ -39,15 +39,6 @@ class Utils:
                 for i in pdf.pages:
                     text += " " + str(i.extract_text())
 
-            #pdfFileObj = pdfplumber.open(filename)  #open(filename, 'rb')  #
-            #pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-            #pages = pdfReader.numPages
-            #content = ""
-            # for i in range(pages):
-            #    pageObj = pdfReader.getPage(i)
-            #    text = pageObj #.extractText()
-            #    content += " " + text.extractText() + " " #text.extract_text()
-                #print (text)
                 return text
 
         elif filename.endswith('.txt'):
