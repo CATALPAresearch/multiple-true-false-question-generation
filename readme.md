@@ -44,8 +44,8 @@ conda install -y -c conda-forge xlsxwriter
 Distributed under the MIT License. See [LICENSE.txt](https://gitlab.pi6.fernuni-hagen.de/la-diva/adaptive-assessment/generationofmultipletruefalsequestions/-/blob/master/LICENSE.txt) for more information.
 
 # Contact
-Regina Kasakowskij - regina.kasakowskij@fernuni-hagen.de
-Niels Seidel - niels.seidel@fernuni-hagen.de
+- Regina Kasakowskij - regina.kasakowskij@fernuni-hagen.de
+- Niels Seidel - niels.seidel@fernuni-hagen.de
 
 Project Link: 
 
