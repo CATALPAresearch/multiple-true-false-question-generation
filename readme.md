@@ -5,6 +5,7 @@ This project provides a Natural Language Pipeline for processing German Textbook
 - generation of false statements
 - automatic selection of true statements 
 - selection of an arbitrary similarity for true and false statements as well as the number of false statements
+- generating false statements by adding or deleting negations as well as using a german gpt2
 
 # Setup
 
