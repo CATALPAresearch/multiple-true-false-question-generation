@@ -1,14 +1,10 @@
 This project provides a Natural Language Pipeline for processing German Textbook sections as an input generating Multiple True-False Question using GPT2.
 
-**Todo**
-
-- [x] write readme.md
-- [x] text pipeline with one text
-- [x] collect all input texts
-- [ ] run pipe line with all texts
-- [ ] render output measures for publication
 
 # Features
+- generation of false statements
+- automatic selection of true statements 
+- selection of an arbitrary similarity for true and false statements as well as the number of false statements
 
 # Setup
 
@@ -48,11 +44,11 @@ conda install -y -c conda-forge xlsxwriter
 Distributed under the MIT License. See [LICENSE.txt](https://gitlab.pi6.fernuni-hagen.de/la-diva/adaptive-assessment/generationofmultipletruefalsequestions/-/blob/master/LICENSE.txt) for more information.
 
 # Contact
-Regina Kasakowskij - e-mail
-Niels Seidel - e-mail
+Regina Kasakowskij - regina.kasakowskij@fernuni-hagen.de
+Niels Seidel - niels.seidel@fernuni-hagen.de
 
 Project Link: 
 
 # Acknowledgments
 
-This research was supported by the Research Cluster Digitalization, Diversity and Lifelong Learning – Consequences for Higher Education (D²L²) of the FernUniversität in Hagen, Germany.
+This research was supported by CATALPA – Center of Advanced Technology for Assisted Learning and Predictive Analytics of the FernUniversität in Hagen, Germany.
