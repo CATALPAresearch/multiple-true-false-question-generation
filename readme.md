@@ -10,14 +10,8 @@ This project provides a Natural Language Pipeline for processing German Textbook
 
 ## Getting startet
 
-1. After installation you need to run the following command to start the program: 
+1. After installation you need to execute the run.sh script by e.g. running `bash run.sh` in the terminal
 
-`python3.9 main.py --answers 3 --similarity 0.7 --input ./data/1801_Prozesse.txt`
-
-For "answers" you should enter an integer value for the number of expected answer options per MTF question.
-For 'similarity' you should enter a float value between 0 and 1 for the percentage of similarity between the answer choices. This specifies the percentage of the sentence that remains unchanged.
-2. Select a text files as an input for the question generation.
-3. As output you get a text summary (.txt) of your selected source text and a csv file (delimiter " ; ") with different answer options.
 
 ## Installation
 
