@@ -42,7 +42,12 @@ Distributed under the MIT License. See [LICENSE.txt](https://gitlab.pi6.fernuni-
 - Regina Kasakowskij (M.A.) - regina.kasakowskij@fernuni-hagen.de
 - Dr. Niels Seidel - niels.seidel@fernuni-hagen.de
 
-Project Link: 
+# Research
+This project was carried out as part of research in the project LA-DIVA
+Project Link: [Project page LA-DIVA](https://www.fernuni-hagen.de/forschung/schwerpunkte/catalpa/forschung/projekte/la-diva.shtml)
+
+## Publications
+[Kasakowskij, R., Kasakowskij, T. & Seidel, N., (2022). Generation of Multiple True False Questions. In: Henning, P. A., Striewe, M. & Wölfel, M. (Hrsg.), 20. Fachtagung Bildungstechnologien (DELFI). Bonn: Gesellschaft für Informatik e.V.. (S. 147-152). DOI: 10.18420/delfi2022-026](https://dl.gi.de/handle/20.500.12116/38826)
 
 # Acknowledgments
 
