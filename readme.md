@@ -86,7 +86,7 @@ By configuring the parameter `similarity` you can determine what portion of a se
 
 **Citation of the Dataset**
 
--   xxx
+-   Kasakowskij, R., Kasakowskij, T., & Seidel, N. (2022). Generation of Multiple True False Questions. In P. A. Henning, M. Striewe, & M. Wölfel (Eds.), DELFI 2021 – Die 20. Fachtagung Bildungstechnologien der Gesellschaft für Informatik e.V. (pp. 147–152). Gesellschaft für Informatik. https://doi.org/10.18420/delfi2022-026
 
 The source code and data are maintained at GitHub: https://github.com/D2L2/multiple-true-false-question-generation
 
