@@ -1,0 +1,12 @@
+pdfplumber
+nltk
+pypdf2
+pylatexenc
+packaging
+transformers
+essential_generators
+xlsxwriter
+tk
+pylatexenc
+
+

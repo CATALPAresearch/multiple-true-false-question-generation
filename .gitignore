@@ -1,3 +1,9 @@
 .env
 output/*
 .DS_Store
+__pycache__
+.Rproj.user
+*.Rproj
+*.xlsx
+summarized.txt
+.gitignore

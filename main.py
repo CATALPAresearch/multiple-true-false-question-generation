@@ -33,12 +33,12 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     if args.answers and isinstance(args.answers, int):
-        answer_options = args.answers  # parser.parse_args('-a')
+        answer_options = args.answers 
     else:
         answer_options = 3
         
     if args.similarity and isinstance(args.similarity, float) and args.similarity > 0 and args.similarity < 1:
-        similarity = args.similarity  # parser.parse_args('-sim')
+        similarity = args.similarity  
     else:
         similarity = 0.3
         
@@ -69,6 +69,6 @@ if __name__ == '__main__':
     utils.save_csv(result, filename, prefix='_generated.csv')
     utils.save_xlsx(result, filename, prefix='_generated.xlsx')
     
-    print("end QUESTION GENERATION")
+    print(".. END QUESTION GENERATION")
     
     # Step 3: Prepare output for evaluation

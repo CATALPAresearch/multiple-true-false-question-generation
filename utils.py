@@ -1,7 +1,7 @@
 import os
 from tkinter import filedialog
 import tkinter as tk
-import pdfplumber
+#import pdfplumber
 from pylatexenc.latex2text import LatexNodes2Text
 import csv
 import xlsxwriter
@@ -33,13 +33,13 @@ class Utils:
             content = texFileObj.read()
             return LatexNodes2Text().latex_to_text(content)
 
-        elif filename.endswith('.pdf'):
-            with pdfplumber.open(os.path.join(self.inputPath, filename)) as pdf:
-                text = ""
-                for i in pdf.pages:
-                    text += " " + str(i.extract_text())
-
-                return text
+        #elif filename.endswith('.pdf'):
+            #with pdfplumber.open(os.path.join(self.inputPath, filename)) as pdf:
+            #    text = ""
+            #    for i in pdf.pages:
+            #        text += " " + str(i.extract_text())
+            #
+            #    return text
 
         elif filename.endswith('.txt'):
             textFileObj = open(os.path.join(
