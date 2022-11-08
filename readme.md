@@ -63,9 +63,9 @@ By configuring the parameter `similarity` you can determine what portion of a se
 
 **Citation of the Dataset**
 
-* Seidel, Niels, & Menze, Dennis. (2022). Data and Analysis of Reading and Assessment Activities in Moodle (1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.7300070
+* xxx
 
-The source code and data are maintained at GitHub: https://github.com/nise/delfi22
+The source code and data are maintained at GitHub: https://github.com/D2L2/multiple-true-false-question-generation
 
 **Contact**
 
